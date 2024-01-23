@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { GiftCardQuestion } from "./create-profil/primaries/react-app/components/gift-card-question";
+import { EasyTaskQuestion } from "./create-profil/primaries/react-app/components/easy-task-question";
+import { RealIncomesQuestion } from "./create-profil/primaries/react-app/components/real-incomes-question";
+import { SatisfactionThresholdQuestion } from "./create-profil/primaries/react-app/components/satisfaction-threshold-question";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <h1>Wise O'Clock</h1>
       </header>
-    </div>
+      <main>
+        <GiftCardQuestion />
+        <EasyTaskQuestion />
+        <RealIncomesQuestion />
+        <SatisfactionThresholdQuestion />
+      </main>
+    </>
   );
 }
 
