@@ -1,6 +1,6 @@
 import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
 import { AppState } from "../../../../../store/appState";
-import { createProfile } from "../index";
+import { startProfileCreation } from "../index";
 
 describe("Create a new profile", () => {
   let store: ReduxStore;
@@ -25,20 +25,38 @@ describe("Create a new profile", () => {
     });
   });
 
-  it("displays GIFT_CARD question after creating profile", async () => {
-    await store.dispatch(createProfile({ name: "John Doe" }));
+  it("asks for name when creating the profile", async () => {
+    await store.dispatch(startProfileCreation());
 
     expect(store.getState()).toEqual<AppState>({
       ...initialState,
       profile: {
-        name: "John Doe",
+        name: null,
         "60minutesPhoneCallValue": null,
         "60minutesEasyTaskValue": null,
         monthlyWorkedHours: null,
         monthlyHoursSpentInTransport: null,
         monthlyIncome: null,
       },
-      displayedQuestion: { id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD" },
+      displayedQuestion: { id: "ASK_NAME" },
     });
   });
+
+  //TODO in other use-case
+  // it("displays GIFT_CARD question after asking name", async () => {
+  //   await store.dispatch(createProfile({ name: "John Doe" }));
+  //
+  //   expect(store.getState()).toEqual<AppState>({
+  //     ...initialState,
+  //     profile: {
+  //       name: "John Doe",
+  //       "60minutesPhoneCallValue": null,
+  //       "60minutesEasyTaskValue": null,
+  //       monthlyWorkedHours: null,
+  //       monthlyHoursSpentInTransport: null,
+  //       monthlyIncome: null,
+  //     },
+  //     displayedQuestion: { id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD" },
+  //   });
+  // });
 });

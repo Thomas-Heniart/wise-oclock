@@ -1,7 +1,7 @@
 import { Profile } from "../models/profile";
 import { UnknownAction } from "@reduxjs/toolkit";
 
-import { PROFILE_CREATED, ProfileCreatedAction } from "../../../store/actions";
+import { PROFILE_CREATED } from "../../../store/actions";
 
 export const profileReducer = (
   state: Profile | null = null,
@@ -9,7 +9,7 @@ export const profileReducer = (
 ) => {
   if (action.type === PROFILE_CREATED)
     return {
-      name: (action as ProfileCreatedAction).payload.name,
+      name: null,
       "60minutesPhoneCallValue": null,
       "60minutesEasyTaskValue": null,
       monthlyWorkedHours: null,

@@ -9,7 +9,7 @@ export const displayedQuestionReducer = (
 ) => {
   if (action.type === PROFILE_CREATED)
     return {
-      id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD",
+      id: "ASK_NAME",
     } satisfies DisplayedQuestion;
   return state;
 };

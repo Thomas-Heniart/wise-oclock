@@ -1,21 +1,36 @@
-import { useSelector } from "react-redux";
-import { createProfileButtonVM } from "../view-models-generator/create-profile";
-import { useState } from "react";
-import { AskName } from "./ask-name";
+import { useDispatch, useSelector } from "react-redux";
+import { JSX, MouseEventHandler } from "react";
+import { AskName } from "./questions/ask-name";
+import { GiftCardQuestion } from "./questions/gift-card-question";
+import {
+  displayedQuestionVM,
+  DisplayedQuestionVM,
+} from "../view-models-generator/displayed-question";
+import { AppDispatch } from "../../../../../store/reduxStore";
+
+import { startProfileCreation } from "../../../../hexagon/use-cases/start-profile-creation";
 
 export const CreateProfile = () => {
-  const buttonVM = useSelector(createProfileButtonVM);
+  const dispatch = useDispatch<AppDispatch>();
+  const displayedQuestionId = useSelector(displayedQuestionVM);
 
-  const [showNameForm, setShowNameForm] = useState(false);
+  const onNewProfileClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    dispatch(startProfileCreation());
+  };
 
-  return (
-    <header>
-      {!showNameForm && buttonVM.cssClasses.includes("show") && (
-        <button type={"button"} onClick={() => setShowNameForm(true)}>
-          {buttonVM.label}
-        </button>
-      )}
-      {showNameForm && <AskName />}
-    </header>
-  );
+  const viewsFactory: Record<DisplayedQuestionVM, () => JSX.Element | null> = {
+    "": () => (
+      <button type={"button"} onClick={onNewProfileClick}>
+        New profile
+      </button>
+    ),
+    ASK_NAME: () => <AskName />,
+    "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD": () => <GiftCardQuestion />,
+    "60_MINUTES_EASY_TASK_VALUE": () => <GiftCardQuestion />,
+    INCOME: () => <GiftCardQuestion />,
+    SATISFACTION_THRESHOLD: () => <GiftCardQuestion />,
+  };
+
+  return <header>{viewsFactory[displayedQuestionId]()}</header>;
 };

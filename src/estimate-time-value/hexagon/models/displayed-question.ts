@@ -1,4 +1,5 @@
 export type DisplayedQuestionId =
+  | "ASK_NAME"
   | "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD"
   | "60_MINUTES_EASY_TASK_VALUE"
   | "INCOME"
