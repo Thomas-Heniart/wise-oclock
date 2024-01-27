@@ -1,8 +1,8 @@
 import React from "react";
-import { GiftCardQuestion } from "./create-profil/primaries/react-app/components/gift-card-question";
-import { EasyTaskQuestion } from "./create-profil/primaries/react-app/components/easy-task-question";
-import { RealIncomesQuestion } from "./create-profil/primaries/react-app/components/real-incomes-question";
-import { SatisfactionThresholdQuestion } from "./create-profil/primaries/react-app/components/satisfaction-threshold-question";
+import { GiftCardQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/gift-card-question";
+import { EasyTaskQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/easy-task-question";
+import { RealIncomesQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/real-incomes-question";
+import { SatisfactionThresholdQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/satisfaction-threshold-question";
 
 function App() {
   return (
