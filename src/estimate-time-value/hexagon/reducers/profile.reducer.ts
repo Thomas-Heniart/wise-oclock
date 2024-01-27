@@ -1,7 +1,11 @@
 import { Profile } from "../models/profile";
 import { UnknownAction } from "@reduxjs/toolkit";
 
-import { PROFILE_CREATED } from "../../../store/actions";
+import {
+  PROFILE_CREATED,
+  PROFILE_NAME_PROVIDED,
+  ProfileNameProvidedAction,
+} from "../../../store/actions";
 
 export const profileReducer = (
   state: Profile | null = null,
@@ -15,6 +19,11 @@ export const profileReducer = (
       monthlyWorkedHours: null,
       monthlyHoursSpentInTransport: null,
       monthlyIncome: null,
+    };
+  if (action.type === PROFILE_NAME_PROVIDED)
+    return {
+      ...state!,
+      name: (action as ProfileNameProvidedAction).payload.name,
     };
   return state;
 };

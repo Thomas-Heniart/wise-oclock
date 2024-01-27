@@ -2,7 +2,7 @@ import { FormEventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../../../store/reduxStore";
 
-import { startProfileCreation } from "../../../../../hexagon/use-cases/start-profile-creation";
+import { provideProfileName } from "../../../../../hexagon/use-cases/ask-profile-name";
 
 export const AskName = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -10,8 +10,7 @@ export const AskName = () => {
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    //TODO Invalid
-    dispatch(startProfileCreation());
+    dispatch(provideProfileName({ name }));
   };
 
   return (

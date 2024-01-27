@@ -41,22 +41,4 @@ describe("Create a new profile", () => {
       displayedQuestion: { id: "ASK_NAME" },
     });
   });
-
-  //TODO in other use-case
-  // it("displays GIFT_CARD question after asking name", async () => {
-  //   await store.dispatch(createProfile({ name: "John Doe" }));
-  //
-  //   expect(store.getState()).toEqual<AppState>({
-  //     ...initialState,
-  //     profile: {
-  //       name: "John Doe",
-  //       "60minutesPhoneCallValue": null,
-  //       "60minutesEasyTaskValue": null,
-  //       monthlyWorkedHours: null,
-  //       monthlyHoursSpentInTransport: null,
-  //       monthlyIncome: null,
-  //     },
-  //     displayedQuestion: { id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD" },
-  //   });
-  // });
 });
