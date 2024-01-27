@@ -1,8 +1,5 @@
 import React from "react";
-import { GiftCardQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/gift-card-question";
-import { EasyTaskQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/easy-task-question";
-import { RealIncomesQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/real-incomes-question";
-import { SatisfactionThresholdQuestion } from "./estimate-time-value/adapters/primaries/react-app/components/satisfaction-threshold-question";
+import { CreateProfile } from "./estimate-time-value/adapters/primaries/react-app/components/create-profile";
 
 function App() {
   return (
@@ -11,10 +8,7 @@ function App() {
         <h1>Wise O'Clock</h1>
       </header>
       <main>
-        <GiftCardQuestion />
-        <EasyTaskQuestion />
-        <RealIncomesQuestion />
-        <SatisfactionThresholdQuestion />
+        <CreateProfile />
       </main>
     </>
   );

@@ -4,15 +4,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { initReduxStore } from "./store/reduxStore";
 import { Provider } from "react-redux";
-import { InMemoryQuestionGateway } from "./estimate-time-value/adapters/secondaries/gateways/in-memory/in-memory-question.gateway";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 
-const questionGateway = new InMemoryQuestionGateway();
-
-const store = initReduxStore({ questionGateway });
+const store = initReduxStore({});
 
 root.render(
   <React.StrictMode>
