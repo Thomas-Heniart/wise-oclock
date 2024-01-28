@@ -11,7 +11,7 @@ export const ONE_HOUR_PHONE_CALL_VALUE_PROVIDED =
 
 export type OneHourPhoneCallValueProvidedAction = {
   type: typeof ONE_HOUR_PHONE_CALL_VALUE_PROVIDED;
-  payload: { value: string };
+  payload: { value: number };
 };
 
 export const ONE_HOUR_EASY_TASK_VALUE_PROVIDED =
@@ -19,7 +19,7 @@ export const ONE_HOUR_EASY_TASK_VALUE_PROVIDED =
 
 export type OneHourEasyTaskValueProvidedAction = {
   type: typeof ONE_HOUR_PHONE_CALL_VALUE_PROVIDED;
-  payload: { value: string };
+  payload: { value: number };
 };
 
 export const INCOME_DETAILS_PROVIDED = "INCOME_DETAILS_PROVIDED";

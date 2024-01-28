@@ -22,10 +22,10 @@ export const displayedQuestionReducer = (
       id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD",
     } satisfies DisplayedQuestion;
   if (action.type === ONE_HOUR_PHONE_CALL_VALUE_PROVIDED)
-    return { id: "60_MINUTES_EASY_TASK_VALUE" };
+    return { id: "60_MINUTES_EASY_TASK_VALUE" } satisfies DisplayedQuestion;
   if (action.type === ONE_HOUR_EASY_TASK_VALUE_PROVIDED)
-    return { id: "INCOME" };
+    return { id: "INCOME" } satisfies DisplayedQuestion;
   if (action.type === INCOME_DETAILS_PROVIDED)
-    return { id: "SATISFACTION_THRESHOLD" };
+    return { id: "SATISFACTION_THRESHOLD" } satisfies DisplayedQuestion;
   return state;
 };

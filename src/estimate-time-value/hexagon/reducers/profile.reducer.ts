@@ -27,6 +27,7 @@ export const profileReducer = (
       monthlyWorkedHours: null,
       monthlyHoursSpentInTransport: null,
       monthlyIncome: null,
+      satisfactionThreshold: null,
     };
   if (action.type === PROFILE_NAME_PROVIDED)
     return {

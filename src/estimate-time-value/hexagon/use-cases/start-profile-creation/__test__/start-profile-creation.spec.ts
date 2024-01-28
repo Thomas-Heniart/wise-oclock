@@ -34,9 +34,10 @@ describe("Create a new profile", () => {
         name: null,
         "60minutesPhoneCallValue": null,
         "60minutesEasyTaskValue": null,
+        monthlyIncome: null,
         monthlyWorkedHours: null,
         monthlyHoursSpentInTransport: null,
-        monthlyIncome: null,
+        satisfactionThreshold: null,
       },
       displayedQuestion: { id: "ASK_NAME" },
     });

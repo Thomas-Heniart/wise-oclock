@@ -6,12 +6,12 @@ import { provideProfileName } from "../../../../../hexagon/use-cases/provide-pro
 
 export const AskName = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [name, setName] = useState("");
-
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(provideProfileName({ name }));
   };
+
+  const [name, setName] = useState("");
 
   return (
     <form onSubmit={onSubmit}>
