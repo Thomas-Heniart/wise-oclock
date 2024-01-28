@@ -5,4 +5,5 @@ export type Profile = {
   monthlyWorkedHours: number | null;
   monthlyHoursSpentInTransport: number | null;
   monthlyIncome: number | null;
+  satisfactionThreshold: number | null;
 };

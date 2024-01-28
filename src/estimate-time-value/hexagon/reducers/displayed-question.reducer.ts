@@ -1,7 +1,13 @@
 import { DisplayedQuestion } from "../models/displayed-question";
 import { UnknownAction } from "@reduxjs/toolkit";
 
-import { PROFILE_CREATED, PROFILE_NAME_PROVIDED } from "../../../store/actions";
+import {
+  INCOME_DETAILS_PROVIDED,
+  ONE_HOUR_EASY_TASK_VALUE_PROVIDED,
+  ONE_HOUR_PHONE_CALL_VALUE_PROVIDED,
+  PROFILE_CREATED,
+  PROFILE_NAME_PROVIDED,
+} from "../../../store/actions";
 
 export const displayedQuestionReducer = (
   state: DisplayedQuestion | null = null,
@@ -15,5 +21,11 @@ export const displayedQuestionReducer = (
     return {
       id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD",
     } satisfies DisplayedQuestion;
+  if (action.type === ONE_HOUR_PHONE_CALL_VALUE_PROVIDED)
+    return { id: "60_MINUTES_EASY_TASK_VALUE" };
+  if (action.type === ONE_HOUR_EASY_TASK_VALUE_PROVIDED)
+    return { id: "INCOME" };
+  if (action.type === INCOME_DETAILS_PROVIDED)
+    return { id: "SATISFACTION_THRESHOLD" };
   return state;
 };

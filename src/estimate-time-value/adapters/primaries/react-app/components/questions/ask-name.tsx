@@ -2,7 +2,7 @@ import { FormEventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../../../store/reduxStore";
 
-import { provideProfileName } from "../../../../../hexagon/use-cases/ask-profile-name";
+import { provideProfileName } from "../../../../../hexagon/use-cases/provide-profile-name";
 
 export const AskName = () => {
   const dispatch = useDispatch<AppDispatch>();
