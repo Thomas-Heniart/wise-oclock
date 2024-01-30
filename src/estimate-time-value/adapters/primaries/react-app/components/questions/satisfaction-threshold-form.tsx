@@ -21,15 +21,16 @@ export const SatisfactionThresholdForm = () => {
     <form onSubmit={onSubmit}>
       <article>
         <header>
-          Vous allez maintenant faire une estimation, c'est l'étape la plus
-          complexe. <br />
-          Vous devez estimer combien vous souhaiteriez gagner par heure de
-          travail pour vous sentir « satisfait ». <br />
-          Il ne s'agit pas du montant minimum et encore moins d'un fantasme de
-          montant exorbitant. <br />
-          Vous devez noter le montant que vous trouvez raisonnable. <br />À
-          titre d'exemple, la première fois que j'ai fait cet exercice, j'avais
-          noté 12 euros.
+          You're now going to make an estimate, and this is the most complex
+          stage. <br />
+          You need to estimate how much you would like to earn per hour worked
+          in order to feel «satisfied». <br />
+          We're not talking about a minimum amount, and even less about a
+          fantasy of an exorbitant amount. You should note down the amount you
+          think is reasonable.
+          <br />
+          For example, the first time I did this exercise, I wrote down 12
+          dollars.
         </header>
         <div>
           <input

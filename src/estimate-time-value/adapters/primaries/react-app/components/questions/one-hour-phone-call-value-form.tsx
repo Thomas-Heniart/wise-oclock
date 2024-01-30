@@ -17,11 +17,12 @@ export const OneHourPhoneCallValueForm = () => {
     <form onSubmit={onSubmit}>
       <article>
         <header>
-          Imaginez que je vous propose de passer une heure au télé-phone, sans
-          rien faire d'autre quattendre votre tour, pour gagner une carte cadeau
-          que vous pourrez dépenser n'importe où. <br />
-          Combien devrait coûter au minimum cette carte cadeau pour que vous
-          patientiez sagement au téléphone durant 60 minutes ?
+          Imagine if I asked you to spend an hour on the phone, doing nothing
+          but waiting your turn, to win a gift card. waiting for your turn, to
+          win a gift card that you can spend anywhere. that you can spend
+          anywhere. <br />
+          What would the minimum cost of this gift card be for you to wait to
+          wait patiently on the phone for 60 minutes?
         </header>
         <div>
           <input

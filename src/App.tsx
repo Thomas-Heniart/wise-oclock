@@ -7,9 +7,9 @@ function App() {
       <header>
         <h1>Wise O'Clock</h1>
       </header>
-      <main>
+      <div>
         <CreateProfile />
-      </main>
+      </div>
     </>
   );
 }

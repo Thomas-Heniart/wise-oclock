@@ -24,24 +24,18 @@ export const IncomeDetailsForm = () => {
   const [monthlyHoursSpentInTransport, setMonthlyHoursSpentInTransport] =
     useState<number | string>("");
 
+  const inputStyle = {
+    marginTop: "calc(var(--block-spacing-vertical) * 0.5)",
+  };
+
   return (
     <form onSubmit={onSubmit}>
       <article>
         <header>
-          Prenez l'ensemble de vos revenus issus de votre travail du mois
-          dernier (s'ils sont fluctuants, faites-le sur une année pour obtenir
-          une moyenne mensuelle). <br />
-          Calculez maintenant tout le temps que vous avez passé à travailler
-          pour obtenir ces revenus (s'ils sont fluctuants, faites-le également
-          sur une année). <br />
-          Enfin, calculez le temps que vous avez passé dans les transports pour
-          obtenir ces revenus s is sont filuctuants, faites-e encore sur une
-          année). <br />
-          Tapez l'opération suivante sur une calculatrice : REVENUS / (TEMPS DE
-          TRAVAIL + TEMPS DE TRANSPORT).
-        </header>
-        <div>
+          Take all your income from work for the last month (if it fluctuates,
+          do it over a year to obtain a monthly average).
           <input
+            style={inputStyle}
             type={"number"}
             placeholder={"Monthly Income"}
             required={true}
@@ -50,7 +44,12 @@ export const IncomeDetailsForm = () => {
               setMonthlyIncome(toNumberIfNotEmpty(e.target.value))
             }
           />
+        </header>
+        <main>
+          Now calculate all the time you spent working to obtain this income (if
+          it fluctuates, do this over a year as well).
           <input
+            style={inputStyle}
             type={"number"}
             placeholder={"Monthly worked hours"}
             required={true}
@@ -59,7 +58,12 @@ export const IncomeDetailsForm = () => {
               setMonthlyWorkedHours(toNumberIfNotEmpty(e.target.value))
             }
           />
+        </main>
+        <footer>
+          Finally, calculate the amount of time you have spent in transport to
+          obtain this income (if it is substantial, do it again over a year).
           <input
+            style={inputStyle}
             type={"number"}
             placeholder={"Monthly hours spent in transport"}
             required={true}
@@ -70,8 +74,10 @@ export const IncomeDetailsForm = () => {
               )
             }
           />
-          <button type={"submit"}>Next</button>
-        </div>
+          <button style={inputStyle} type={"submit"}>
+            Next
+          </button>
+        </footer>
       </article>
     </form>
   );

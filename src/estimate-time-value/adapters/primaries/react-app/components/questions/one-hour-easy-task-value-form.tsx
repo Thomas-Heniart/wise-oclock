@@ -17,16 +17,16 @@ export const OneHourEasyTaskValueForm = () => {
     <form onSubmit={onSubmit}>
       <article>
         <header>
-          Vous devez exécuter une tâche simple et répétitive pendant une heure.
-          Cette tâche ne vous apporte rien de spécial à aucun niveau mais elle
-          doit être faite absolument pendant une heure entière. <br />
-          Combien seriez-vous prêt à dépenser au maximum pour que je fasse cette
-          tâche pour vous pendant 60 minutes?
+          You have to carry out a simple, repetitive task for an hour. This task
+          doesn't do anything special for you in any way, but it must be
+          absolutely must be done for a whole hour. <br />
+          How much would you be prepared to spend if I did this task for you for
+          for 60 minutes?
         </header>
         <div>
           <input
             type={"number"}
-            placeholder={"$"}
+            placeholder={"1$"}
             required={true}
             value={value}
             onChange={(e) => setValue(toNumberIfNotEmpty(e.target.value))}
