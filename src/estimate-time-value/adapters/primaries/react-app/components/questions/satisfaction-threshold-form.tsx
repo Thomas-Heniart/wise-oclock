@@ -1,21 +1,26 @@
 import React, { FormEventHandler, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../../../../store/reduxStore";
 import { provideSatisfactionThreshold } from "../../../../../hexagon/use-cases/provide-satisfaction-threshold";
 import { toNumberIfNotEmpty } from "../../../../../../misc/number";
 
+import { calculateEstimatedTimeValue } from "../../../../../hexagon/use-cases/calculate-estimated-time-value";
+import { estimatedProfileTimeValueVM } from "../../view-models-generator/estimated-profile-time-value";
+import { ProfileTimeValue } from "../profile-time-value";
+
 export const SatisfactionThresholdForm = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const estimatedTimeValue = useSelector(estimatedProfileTimeValueVM);
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(
       provideSatisfactionThreshold({ satisfactionThreshold: value as number }),
-    ).then(() => {
-      window.alert("This is the end of the app for now, come back later");
-    });
+    ).then(() => dispatch(calculateEstimatedTimeValue()));
   };
 
   const [value, setValue] = useState<number | string>("");
+
+  if (estimatedTimeValue !== null) return <ProfileTimeValue />;
 
   return (
     <form onSubmit={onSubmit}>

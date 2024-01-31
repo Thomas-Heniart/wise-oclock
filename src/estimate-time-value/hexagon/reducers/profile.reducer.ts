@@ -13,6 +13,8 @@ import {
   ProfileNameProvidedAction,
   SATISFACTION_THRESHOLD_PROVIDED,
   SatisfactionThresholdAction,
+  TIME_VALUE_ESTIMATED,
+  TimeValueEstimatedAction,
 } from "../../../store/actions";
 
 export const profileReducer = (
@@ -28,6 +30,7 @@ export const profileReducer = (
       monthlyHoursSpentInTransport: null,
       monthlyIncome: null,
       satisfactionThreshold: null,
+      estimatedTimeValue: null,
     };
   if (action.type === PROFILE_NAME_PROVIDED)
     return {
@@ -55,6 +58,12 @@ export const profileReducer = (
     return {
       ...state!,
       ...(action as SatisfactionThresholdAction).payload,
+    };
+  if (action.type === TIME_VALUE_ESTIMATED)
+    return {
+      ...state!,
+      estimatedTimeValue: (action as TimeValueEstimatedAction).payload
+        .estimatedTimeValue,
     };
   return state;
 };

@@ -38,6 +38,7 @@ describe("Create a new profile", () => {
         monthlyWorkedHours: null,
         monthlyHoursSpentInTransport: null,
         satisfactionThreshold: null,
+        estimatedTimeValue: null,
       },
       displayedQuestion: { id: "ASK_NAME" },
     });

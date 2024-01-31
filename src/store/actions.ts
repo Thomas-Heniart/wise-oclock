@@ -42,3 +42,12 @@ export type SatisfactionThresholdAction = {
     satisfactionThreshold: number;
   };
 };
+
+export const TIME_VALUE_ESTIMATED = "TIME_VALUE_ESTIMATED";
+
+export type TimeValueEstimatedAction = {
+  type: typeof TIME_VALUE_ESTIMATED;
+  payload: {
+    estimatedTimeValue: number;
+  };
+};

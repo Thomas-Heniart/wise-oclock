@@ -1,6 +1,9 @@
 import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
 import { AppState } from "../../../../../store/appState";
-import { PROFILE_NAME_PROVIDED } from "../../../../../store/actions";
+import {
+  PROFILE_CREATED,
+  PROFILE_NAME_PROVIDED,
+} from "../../../../../store/actions";
 import { provideSatisfactionThreshold } from "../index";
 
 describe("Provide satisfaction threshold", () => {
@@ -9,25 +12,29 @@ describe("Provide satisfaction threshold", () => {
 
   beforeEach(() => {
     store = initReduxStore({});
-    //TODO for calculation -> dispatch all previous actions
-    store.dispatch({
-      type: PROFILE_NAME_PROVIDED,
-      payload: { name: "John Doe" },
-    });
+    givenProfileName("John Doe");
     initialState = store.getState();
   });
 
-  it("saves satisfaction threshold", async () => {
+  it("calculates effective time  satisfaction threshold", async () => {
     await store.dispatch(
-      provideSatisfactionThreshold({ satisfactionThreshold: 30 }),
+      provideSatisfactionThreshold({ satisfactionThreshold: 1 }),
     );
 
     expect(store.getState()).toEqual<AppState>({
       ...initialState,
       profile: {
         ...initialState.profile!,
-        satisfactionThreshold: 30,
+        satisfactionThreshold: 1,
       },
     });
   });
+
+  const givenProfileName = (name: string) => {
+    store.dispatch({ type: PROFILE_CREATED });
+    store.dispatch({
+      type: PROFILE_NAME_PROVIDED,
+      payload: { name },
+    });
+  };
 });
