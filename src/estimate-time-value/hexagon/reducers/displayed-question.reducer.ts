@@ -1,31 +1,30 @@
 import { DisplayedQuestion } from "../models/displayed-question";
-import { UnknownAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import {
-  INCOME_DETAILS_PROVIDED,
-  ONE_HOUR_EASY_TASK_VALUE_PROVIDED,
-  ONE_HOUR_PHONE_CALL_VALUE_PROVIDED,
-  PROFILE_CREATED,
-  PROFILE_NAME_PROVIDED,
-} from "../../../store/actions";
+import { profileSlice } from "./profile.reducer";
 
-export const displayedQuestionReducer = (
-  state: DisplayedQuestion | null = null,
-  action: UnknownAction,
-) => {
-  if (action.type === PROFILE_CREATED)
-    return {
-      id: "ASK_NAME",
-    } satisfies DisplayedQuestion;
-  if (action.type === PROFILE_NAME_PROVIDED)
-    return {
-      id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD",
-    } satisfies DisplayedQuestion;
-  if (action.type === ONE_HOUR_PHONE_CALL_VALUE_PROVIDED)
-    return { id: "60_MINUTES_EASY_TASK_VALUE" } satisfies DisplayedQuestion;
-  if (action.type === ONE_HOUR_EASY_TASK_VALUE_PROVIDED)
-    return { id: "INCOME" } satisfies DisplayedQuestion;
-  if (action.type === INCOME_DETAILS_PROVIDED)
-    return { id: "SATISFACTION_THRESHOLD" } satisfies DisplayedQuestion;
-  return state;
-};
+type State = DisplayedQuestion | null;
+
+export const displayedQuestionSlice = createSlice({
+  name: "displayedQuestion",
+  initialState: () => null as State,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(profileSlice.actions.createProfile.type, () => ({
+        id: "ASK_NAME",
+      }))
+      .addCase(profileSlice.actions.setName.type, () => ({
+        id: "60_MINUTES_PHONE_CALL_VALUE_TO_GET_GIFT_CARD",
+      }))
+      .addCase(profileSlice.actions.setOneHourPhoneCallValue.type, () => ({
+        id: "60_MINUTES_EASY_TASK_VALUE",
+      }))
+      .addCase(profileSlice.actions.setOneHourEasyTaskValue.type, () => ({
+        id: "INCOME",
+      }))
+      .addCase(profileSlice.actions.setIncomeDetail.type, () => ({
+        id: "SATISFACTION_THRESHOLD",
+      }));
+  },
+});

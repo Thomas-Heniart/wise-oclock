@@ -1,15 +1,18 @@
-import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
-import { AppState } from "../../../../../store/appState";
-import { PROFILE_CREATED } from "../../../../../store/actions";
+import {
+  AppState,
+  initReduxStore,
+  ReduxStore,
+} from "../../../../../store/reduxStore";
 import { provideProfileName } from "../index";
+import { profileSlice } from "../../../reducers/profile.reducer";
 
 describe("Ask profile name", () => {
   let store: ReduxStore;
   let initialState: AppState;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     store = initReduxStore({});
-    store.dispatch({ type: PROFILE_CREATED });
+    store.dispatch(profileSlice.actions.createProfile());
     initialState = store.getState();
   });
 

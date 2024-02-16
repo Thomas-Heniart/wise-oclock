@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { SATISFACTION_THRESHOLD_PROVIDED } from "../../../../store/actions";
+import { profileSlice } from "../../reducers/profile.reducer";
 
 export const provideSatisfactionThreshold = createAsyncThunk<
   void,
@@ -7,9 +7,8 @@ export const provideSatisfactionThreshold = createAsyncThunk<
 >(
   "profile/satisfaction-threshold",
   async ({ satisfactionThreshold }, { dispatch }) => {
-    dispatch({
-      type: SATISFACTION_THRESHOLD_PROVIDED,
-      payload: { satisfactionThreshold },
-    });
+    dispatch(
+      profileSlice.actions.setSatisfactionThreshold({ satisfactionThreshold }),
+    );
   },
 );

@@ -1,28 +1,15 @@
 import { Profile } from "../models/profile";
-import { UnknownAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import {
-  INCOME_DETAILS_PROVIDED,
-  IncomeDetailsAction,
-  ONE_HOUR_EASY_TASK_VALUE_PROVIDED,
-  ONE_HOUR_PHONE_CALL_VALUE_PROVIDED,
-  OneHourEasyTaskValueProvidedAction,
-  OneHourPhoneCallValueProvidedAction,
-  PROFILE_CREATED,
-  PROFILE_NAME_PROVIDED,
-  ProfileNameProvidedAction,
-  SATISFACTION_THRESHOLD_PROVIDED,
-  SatisfactionThresholdAction,
-  TIME_VALUE_ESTIMATED,
-  TimeValueEstimatedAction,
-} from "../../../store/actions";
+import { TypedActionCreator } from "@reduxjs/toolkit/src/mapBuilders";
 
-export const profileReducer = (
-  state: Profile | null = null,
-  action: UnknownAction,
-) => {
-  if (action.type === PROFILE_CREATED)
-    return {
+type State = Profile | null;
+
+export const profileSlice = createSlice({
+  name: "profile",
+  initialState: () => null as State,
+  reducers: {
+    createProfile: () => ({
       name: null,
       "60minutesPhoneCallValue": null,
       "60minutesEasyTaskValue": null,
@@ -31,39 +18,50 @@ export const profileReducer = (
       monthlyIncome: null,
       satisfactionThreshold: null,
       estimatedTimeValue: null,
-    };
-  if (action.type === PROFILE_NAME_PROVIDED)
-    return {
+    }),
+    setName: (state, { payload: { name } }: { payload: { name: string } }) => ({
       ...state!,
-      name: (action as ProfileNameProvidedAction).payload.name,
-    };
-  if (action.type === ONE_HOUR_PHONE_CALL_VALUE_PROVIDED)
-    return {
+      name,
+    }),
+    setOneHourPhoneCallValue: (state, { payload: { value } }) => ({
       ...state!,
-      "60minutesPhoneCallValue": (action as OneHourPhoneCallValueProvidedAction)
-        .payload.value,
-    };
-  if (action.type === ONE_HOUR_EASY_TASK_VALUE_PROVIDED)
-    return {
+      "60minutesPhoneCallValue": value,
+    }),
+    setOneHourEasyTaskValue: (state, { payload: { value } }) => ({
       ...state!,
-      "60minutesEasyTaskValue": (action as OneHourEasyTaskValueProvidedAction)
-        .payload.value,
-    };
-  if (action.type === INCOME_DETAILS_PROVIDED)
-    return {
+      "60minutesEasyTaskValue": value,
+    }),
+    setIncomeDetail: (
+      state,
+      {
+        payload: {
+          monthlyWorkedHours,
+          monthlyHoursSpentInTransport,
+          monthlyIncome,
+        },
+      },
+    ) => ({
       ...state!,
-      ...(action as IncomeDetailsAction).payload,
-    };
-  if (action.type === SATISFACTION_THRESHOLD_PROVIDED)
-    return {
+      monthlyWorkedHours,
+      monthlyHoursSpentInTransport,
+      monthlyIncome,
+    }),
+    setSatisfactionThreshold: (
+      state,
+      { payload: { satisfactionThreshold } },
+    ) => ({
       ...state!,
-      ...(action as SatisfactionThresholdAction).payload,
-    };
-  if (action.type === TIME_VALUE_ESTIMATED)
-    return {
+      satisfactionThreshold,
+    }),
+    setEstimatedTimeValue: (state, { payload: { estimatedTimeValue } }) => ({
       ...state!,
-      estimatedTimeValue: (action as TimeValueEstimatedAction).payload
-        .estimatedTimeValue,
-    };
-  return state;
-};
+      estimatedTimeValue,
+    }),
+  },
+});
+
+export interface ProvideNameAction extends TypedActionCreator<string> {
+  payload: {
+    name: string;
+  };
+}

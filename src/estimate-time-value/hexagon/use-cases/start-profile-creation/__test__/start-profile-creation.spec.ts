@@ -1,5 +1,8 @@
-import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
-import { AppState } from "../../../../../store/appState";
+import {
+  AppState,
+  initReduxStore,
+  ReduxStore,
+} from "../../../../../store/reduxStore";
 import { startProfileCreation } from "../index";
 
 describe("Create a new profile", () => {

@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AppAsyncThunkConfig } from "../../../../store/reduxStore";
-import { AppState } from "../../../../store/appState";
-import { TIME_VALUE_ESTIMATED } from "../../../../store/actions";
+import { AppAsyncThunkConfig, AppState } from "../../../../store/reduxStore";
 import { estimateProfile } from "../../models/profile";
+import { profileSlice } from "../../reducers/profile.reducer";
 
 export const calculateEstimatedTimeValue = createAsyncThunk<
   void,
@@ -11,8 +10,9 @@ export const calculateEstimatedTimeValue = createAsyncThunk<
 >("profile/estimate-time-value", async (_, { dispatch, getState }) => {
   const state = getState() as AppState;
   const profile = state.profile!;
-  dispatch({
-    type: TIME_VALUE_ESTIMATED,
-    payload: { estimatedTimeValue: estimateProfile(profile) },
-  });
+  dispatch(
+    profileSlice.actions.setEstimatedTimeValue({
+      estimatedTimeValue: estimateProfile(profile),
+    }),
+  );
 });

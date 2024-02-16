@@ -1,13 +1,6 @@
 import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
-import {
-  INCOME_DETAILS_PROVIDED,
-  ONE_HOUR_EASY_TASK_VALUE_PROVIDED,
-  ONE_HOUR_PHONE_CALL_VALUE_PROVIDED,
-  PROFILE_CREATED,
-  PROFILE_NAME_PROVIDED,
-  SATISFACTION_THRESHOLD_PROVIDED,
-} from "../../../../../store/actions";
 import { calculateEstimatedTimeValue } from "../index";
+import { profileSlice } from "../../../reducers/profile.reducer";
 
 describe("Calculate estimated time value", () => {
   let store: ReduxStore;
@@ -16,13 +9,8 @@ describe("Calculate estimated time value", () => {
 
   beforeEach(() => {
     store = initReduxStore({});
-    store.dispatch({
-      type: PROFILE_CREATED,
-    });
-    store.dispatch({
-      type: PROFILE_NAME_PROVIDED,
-      payload: { name: profileName },
-    });
+    store.dispatch(profileSlice.actions.createProfile());
+    store.dispatch(profileSlice.actions.setName({ name: profileName }));
   });
 
   it.each`
@@ -159,26 +147,28 @@ describe("Calculate estimated time value", () => {
   });
 
   const givenTimeValues = (values: TimeValues) => {
-    store.dispatch({
-      type: ONE_HOUR_PHONE_CALL_VALUE_PROVIDED,
-      payload: { value: values["60minutesPhoneCallValue"] },
-    });
-    store.dispatch({
-      type: ONE_HOUR_EASY_TASK_VALUE_PROVIDED,
-      payload: { value: values["60minutesEasyTaskValue"] },
-    });
-    store.dispatch({
-      type: INCOME_DETAILS_PROVIDED,
-      payload: {
+    store.dispatch(
+      profileSlice.actions.setOneHourPhoneCallValue({
+        value: values["60minutesPhoneCallValue"],
+      }),
+    );
+    store.dispatch(
+      profileSlice.actions.setOneHourEasyTaskValue({
+        value: values["60minutesEasyTaskValue"],
+      }),
+    );
+    store.dispatch(
+      profileSlice.actions.setIncomeDetail({
         monthlyWorkedHours: values.monthlyWorkedHours,
         monthlyHoursSpentInTransport: values.monthlyHoursSpentInTransport,
         monthlyIncome: values.monthlyIncome,
-      },
-    });
-    store.dispatch({
-      type: SATISFACTION_THRESHOLD_PROVIDED,
-      payload: { satisfactionThreshold: values.satisfactionThreshold },
-    });
+      }),
+    );
+    store.dispatch(
+      profileSlice.actions.setSatisfactionThreshold({
+        satisfactionThreshold: values.satisfactionThreshold,
+      }),
+    );
   };
 
   const expectEstimatedTimeValue = (value: number | null) => {

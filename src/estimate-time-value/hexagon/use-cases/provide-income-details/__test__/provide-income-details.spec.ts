@@ -1,7 +1,10 @@
-import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
-import { AppState } from "../../../../../store/appState";
-import { PROFILE_NAME_PROVIDED } from "../../../../../store/actions";
+import {
+  AppState,
+  initReduxStore,
+  ReduxStore,
+} from "../../../../../store/reduxStore";
 import { provideIncomeDetail } from "../index";
+import { profileSlice } from "../../../reducers/profile.reducer";
 
 describe("Provide income details", () => {
   let store: ReduxStore;
@@ -9,10 +12,8 @@ describe("Provide income details", () => {
 
   beforeEach(() => {
     store = initReduxStore({});
-    store.dispatch({
-      type: PROFILE_NAME_PROVIDED,
-      payload: { name: "John Doe" },
-    });
+    store.dispatch(profileSlice.actions.createProfile());
+    store.dispatch(profileSlice.actions.setName({ name: "John Doe" }));
     initialState = store.getState();
   });
 

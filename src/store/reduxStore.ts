@@ -1,18 +1,24 @@
-import { Action, configureStore, Store, ThunkDispatch } from "@reduxjs/toolkit";
-import { AppState } from "./appState";
+import {
+  Action,
+  combineReducers,
+  configureStore,
+  Store,
+  ThunkDispatch,
+} from "@reduxjs/toolkit";
 import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import { BaseThunkAPI } from "@reduxjs/toolkit/dist/createAsyncThunk";
-import { profileReducer } from "../estimate-time-value/hexagon/reducers/profile.reducer";
-import { displayedQuestionReducer } from "../estimate-time-value/hexagon/reducers/displayed-question.reducer";
+import { profileSlice } from "../estimate-time-value/hexagon/reducers/profile.reducer";
+import { displayedQuestionSlice } from "../estimate-time-value/hexagon/reducers/displayed-question.reducer";
 
 export interface Dependencies {}
 
+const rootReducer = combineReducers({
+  profile: profileSlice.reducer,
+  displayedQuestion: displayedQuestionSlice.reducer,
+});
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
   return configureStore({
-    reducer: {
-      profile: profileReducer,
-      displayedQuestion: displayedQuestionReducer,
-    },
+    reducer: rootReducer,
     devTools: true,
     middleware: (getDefaultMiddleware: GetDefaultMiddleware<AppState>) =>
       getDefaultMiddleware({
@@ -22,6 +28,8 @@ export const initReduxStore = (dependencies: Partial<Dependencies>) => {
       }),
   });
 };
+
+export type AppState = ReturnType<typeof rootReducer>;
 
 export type ReduxStore = Store<AppState> & {
   dispatch: ThunkDispatch<AppState, Dependencies, Action>;

@@ -2,11 +2,8 @@ import {
   initReduxStore,
   ReduxStore,
 } from "../../../../../../../store/reduxStore";
-import {
-  PROFILE_CREATED,
-  TIME_VALUE_ESTIMATED,
-} from "../../../../../../../store/actions";
 import { estimatedProfileTimeValueVM } from "../index";
+import { profileSlice } from "../../../../../../hexagon/reducers/profile.reducer";
 
 describe("Estimated profile time value view models generator", () => {
   let store: ReduxStore;
@@ -21,14 +18,13 @@ describe("Estimated profile time value view models generator", () => {
 
   describe("With an existing profile", () => {
     beforeEach(() => {
-      store.dispatch({ type: PROFILE_CREATED });
+      store.dispatch(profileSlice.actions.createProfile());
     });
 
     it("shows profile estimated time value", () => {
-      store.dispatch({
-        type: TIME_VALUE_ESTIMATED,
-        payload: { estimatedTimeValue: 12 },
-      });
+      store.dispatch(
+        profileSlice.actions.setEstimatedTimeValue({ estimatedTimeValue: 12 }),
+      );
 
       expect(estimatedProfileTimeValueVM(store.getState())).toEqual(12);
     });

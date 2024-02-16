@@ -1,10 +1,10 @@
-import { initReduxStore, ReduxStore } from "../../../../../store/reduxStore";
-import { AppState } from "../../../../../store/appState";
 import {
-  PROFILE_CREATED,
-  PROFILE_NAME_PROVIDED,
-} from "../../../../../store/actions";
+  AppState,
+  initReduxStore,
+  ReduxStore,
+} from "../../../../../store/reduxStore";
 import { provideSatisfactionThreshold } from "../index";
+import { profileSlice } from "../../../reducers/profile.reducer";
 
 describe("Provide satisfaction threshold", () => {
   let store: ReduxStore;
@@ -31,10 +31,7 @@ describe("Provide satisfaction threshold", () => {
   });
 
   const givenProfileName = (name: string) => {
-    store.dispatch({ type: PROFILE_CREATED });
-    store.dispatch({
-      type: PROFILE_NAME_PROVIDED,
-      payload: { name },
-    });
+    store.dispatch(profileSlice.actions.createProfile());
+    store.dispatch(profileSlice.actions.setName({ name }));
   };
 });

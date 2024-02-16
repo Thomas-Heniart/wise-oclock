@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AppAsyncThunkConfig } from "../../../../store/reduxStore";
-import { INCOME_DETAILS_PROVIDED } from "../../../../store/actions";
+import { profileSlice } from "../../reducers/profile.reducer";
 
 export const provideIncomeDetail = createAsyncThunk<
   void,
@@ -16,13 +16,12 @@ export const provideIncomeDetail = createAsyncThunk<
     { monthlyWorkedHours, monthlyHoursSpentInTransport, monthlyIncome },
     { dispatch },
   ) => {
-    dispatch({
-      type: INCOME_DETAILS_PROVIDED,
-      payload: {
+    dispatch(
+      profileSlice.actions.setIncomeDetail({
         monthlyWorkedHours,
         monthlyHoursSpentInTransport,
         monthlyIncome,
-      },
-    });
+      }),
+    );
   },
 );
